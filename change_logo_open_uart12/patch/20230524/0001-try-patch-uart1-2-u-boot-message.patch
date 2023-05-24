@@ -1,0 +1,259 @@
+From 024a0d17b6c201922e629569914daf8c924fc3f4 Mon Sep 17 00:00:00 2001
+From: yoojinlee-hub <adria96@hanmail.net>
+Date: Wed, 24 May 2023 12:41:38 +0900
+Subject: [PATCH] try patch uart1,2 & u-boot message
+
+---
+ arch/arm/dts/ast2600-bletchley.dts      |  7 +++++++
+ arch/arm/dts/ast2600-evb.dts            | 10 ++++++++--
+ arch/arm/dts/ast2600-fpga.dts           |  7 +++++++
+ arch/arm/dts/ast2600-intel.dts          |  6 ++++++
+ arch/arm/dts/ast2600-p10bmc.dts         |  6 ++++++
+ arch/arm/dts/ast2600-pfr.dts            |  7 +++++++
+ arch/arm/dts/ast2600-qcom-dc-scm-v1.dts |  6 ++++++
+ arch/arm/dts/ast2600-s6q.dts            |  6 ++++++
+ arch/arm/dts/ast2600-slt.dts            |  6 ++++++
+ arch/arm/dts/ast2600-tacoma.dts         |  6 ++++++
+ arch/arm/dts/ast2600.dtsi               |  6 +++---
+ arch/arm/mach-aspeed/ast2600/scu_info.c |  2 +-
+ 12 files changed, 69 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm/dts/ast2600-bletchley.dts b/arch/arm/dts/ast2600-bletchley.dts
+index bc907e2134..26d85af915 100644
+--- a/arch/arm/dts/ast2600-bletchley.dts
++++ b/arch/arm/dts/ast2600-bletchley.dts
+@@ -40,6 +40,13 @@
+ 	};
+ };
+ 
++&uart1 {
++    status = "okay";
++};
++
++&uart2 {
++    status = "okay";
++};
+ &uart5 {
+ 	u-boot,dm-pre-reloc;
+ 	status = "okay";
+diff --git a/arch/arm/dts/ast2600-evb.dts b/arch/arm/dts/ast2600-evb.dts
+index 6db1efdda5..dcdf02323d 100644
+--- a/arch/arm/dts/ast2600-evb.dts
++++ b/arch/arm/dts/ast2600-evb.dts
+@@ -1,9 +1,10 @@
+ /dts-v1/;
+ 
+ #include "ast2600-u-boot.dtsi"
++#include "ast2600.dtsi"
+ 
+ / {
+-	model = "AST2600 EVB";
++	model = "AST2600 EVB - modified by innowell";
+ 	compatible = "aspeed,ast2600-evb", "aspeed,ast2600";
+ 
+ 	memory {
+@@ -37,7 +38,12 @@
+ 		};
+ 	};
+ };
+-
++&uart1 {
++    status = "okay";
++};
++&uart2 {
++    status = "okay";
++};
+ &uart5 {
+ 	u-boot,dm-pre-reloc;
+ 	status = "okay";
+diff --git a/arch/arm/dts/ast2600-fpga.dts b/arch/arm/dts/ast2600-fpga.dts
+index 68ff64169c..9c37b5763a 100644
+--- a/arch/arm/dts/ast2600-fpga.dts
++++ b/arch/arm/dts/ast2600-fpga.dts
+@@ -30,6 +30,13 @@
+ 	};
+ };
+ 
++&uart1 {
++    status = "okay";
++};
++
++&uart2 {
++    status = "okay";
++};
+ &uart5 {
+ 	u-boot,dm-pre-reloc;
+ 	status = "okay";
+diff --git a/arch/arm/dts/ast2600-intel.dts b/arch/arm/dts/ast2600-intel.dts
+index d2c8bc2cd4..0062ba5525 100644
+--- a/arch/arm/dts/ast2600-intel.dts
++++ b/arch/arm/dts/ast2600-intel.dts
+@@ -38,7 +38,13 @@
+ 		};
+ 	};
+ };
++&uart1 {
++    status = "okay";
++};
+ 
++&uart2 {
++    status = "okay";
++};
+ &uart5 {
+ 	u-boot,dm-pre-reloc;
+ 	status = "okay";
+diff --git a/arch/arm/dts/ast2600-p10bmc.dts b/arch/arm/dts/ast2600-p10bmc.dts
+index 8fbfeaa0d7..36a774d10f 100755
+--- a/arch/arm/dts/ast2600-p10bmc.dts
++++ b/arch/arm/dts/ast2600-p10bmc.dts
+@@ -44,7 +44,13 @@
+ 		};
+ 	};
+ };
++&uart1 {
++    status = "okay";
++};
+ 
++&uart2 {
++    status = "okay";
++};
+ &uart5 {
+ 	u-boot,dm-pre-reloc;
+ 	status = "okay";
+diff --git a/arch/arm/dts/ast2600-pfr.dts b/arch/arm/dts/ast2600-pfr.dts
+index 4c74db8bd9..2758d91225 100644
+--- a/arch/arm/dts/ast2600-pfr.dts
++++ b/arch/arm/dts/ast2600-pfr.dts
+@@ -39,6 +39,13 @@
+ 	};
+ };
+ 
++&uart1 {
++    status = "okay";
++};
++
++&uart2 {
++    status = "okay";
++};
+ &uart5 {
+ 	u-boot,dm-pre-reloc;
+ 	status = "okay";
+diff --git a/arch/arm/dts/ast2600-qcom-dc-scm-v1.dts b/arch/arm/dts/ast2600-qcom-dc-scm-v1.dts
+index 40048e19c5..8ecda29e60 100644
+--- a/arch/arm/dts/ast2600-qcom-dc-scm-v1.dts
++++ b/arch/arm/dts/ast2600-qcom-dc-scm-v1.dts
+@@ -32,7 +32,13 @@
+ 		};
+ 	};
+ };
++&uart1 {
++    status = "okay";
++};
+ 
++&uart2 {
++    status = "okay";
++};
+ &uart5 {
+ 	u-boot,dm-pre-reloc;
+ 	status = "okay";
+diff --git a/arch/arm/dts/ast2600-s6q.dts b/arch/arm/dts/ast2600-s6q.dts
+index b98cd8c980..970d544f70 100644
+--- a/arch/arm/dts/ast2600-s6q.dts
++++ b/arch/arm/dts/ast2600-s6q.dts
+@@ -33,7 +33,13 @@
+ 		};
+ 	};
+ };
++&uart1 {
++    status = "okay";
++};
+ 
++&uart2 {
++    status = "okay";
++};
+ &uart5 {
+ 	u-boot,dm-pre-reloc;
+ 	status = "okay";
+diff --git a/arch/arm/dts/ast2600-slt.dts b/arch/arm/dts/ast2600-slt.dts
+index 332620dc1a..80c403e3f6 100644
+--- a/arch/arm/dts/ast2600-slt.dts
++++ b/arch/arm/dts/ast2600-slt.dts
+@@ -34,7 +34,13 @@
+ 		};
+ 	};
+ };
++&uart1 {
++    status = "okay";
++};
+ 
++&uart2 {
++    status = "okay";
++};
+ &uart5 {
+ 	u-boot,dm-pre-reloc;
+ 	status = "okay";
+diff --git a/arch/arm/dts/ast2600-tacoma.dts b/arch/arm/dts/ast2600-tacoma.dts
+index 16e57c0406..4aff380e37 100755
+--- a/arch/arm/dts/ast2600-tacoma.dts
++++ b/arch/arm/dts/ast2600-tacoma.dts
+@@ -33,7 +33,13 @@
+ 		};
+ 	};
+ };
++&uart1 {
++    status = "okay";
++};
+ 
++&uart2 {
++    status = "okay";
++};
+ &uart5 {
+ 	u-boot,dm-pre-reloc;
+ 	status = "okay";
+diff --git a/arch/arm/dts/ast2600.dtsi b/arch/arm/dts/ast2600.dtsi
+index 72f21c834b..3fe81264b3 100644
+--- a/arch/arm/dts/ast2600.dtsi
++++ b/arch/arm/dts/ast2600.dtsi
+@@ -468,7 +468,7 @@
+ 				u-boot,dm-pre-reloc;
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&pinctrl_txd1_default &pinctrl_rxd1_default>;
+-				status = "disabled";
++				status = "enabled";
+ 			};
+ 
+ 			uart5: serial@1e784000 {
+@@ -480,7 +480,7 @@
+ 				clock-frequency = <1846154>;
+ 				no-loopback-test;
+ 				u-boot,dm-pre-reloc;
+-				status = "disabled";
++				status = "enabled";
+ 			};
+ 
+ 			wdt1: watchdog@1e785000 {
+@@ -623,7 +623,7 @@
+ 				pinctrl-names = "default";
+ 				pinctrl-0 = <&pinctrl_txd2_default &pinctrl_rxd2_default>;
+ 				u-boot,dm-pre-reloc;
+-				status = "disabled";
++				status = "enabled";
+ 			};
+ 
+ 			uart3: serial@1e78e000 {
+diff --git a/arch/arm/mach-aspeed/ast2600/scu_info.c b/arch/arm/mach-aspeed/ast2600/scu_info.c
+index a2277eec58..f74d0b8598 100644
+--- a/arch/arm/mach-aspeed/ast2600/scu_info.c
++++ b/arch/arm/mach-aspeed/ast2600/scu_info.c
+@@ -24,7 +24,7 @@ static struct soc_id soc_map_table[] = {
+ 	SOC_ID("AST2600-A2", 0x0502030305010303),
+ 	SOC_ID("AST2620-A2", 0x0502020305010203),
+ 	SOC_ID("AST2605-A2", 0x0502010305010103),
+-	SOC_ID("AST2600-A3", 0x0503030305030303),
++	SOC_ID("AST2600-A3-innowell", 0x0503030305030303),
+ 	SOC_ID("AST2620-A3", 0x0503020305030203),
+ 	SOC_ID("AST2605-A3", 0x0503010305030103),
+ 	SOC_ID("AST2625-A3", 0x0503040305030403),
+-- 
+2.25.1
+

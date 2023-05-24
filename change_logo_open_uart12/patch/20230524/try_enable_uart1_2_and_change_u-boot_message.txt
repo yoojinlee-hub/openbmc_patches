@@ -1,0 +1,61 @@
+YJlee — 오늘 오전 10:28
+Hi, all! I have two questions again. 1. If i want to change MAC address manually, which recipe should i modify? (example: devtool modify <recipeName>) 2. If i want to change uart usage, in this case, which recipe should i modify?
+Thank you for read my question.. I hope everyone in this discord have a nice day!
+zevweiss — 오늘 오전 10:33
+re: question 1, you want to set the MAC address manually at compile-time?  while possible (you could patch u-boot to change its default environment to include an ethaddr=xx:xx:xx:xx:xx:xx variable) that seems like an odd thing to do...a more normal approach i think would be to arrange some automation to run fw_setenv on the first boot to set it after reading it from its "true" source (e.g. an eeprom or the like)
+re: question 2, what about uart usage are you looking to change?
+YJlee — 오늘 오전 10:37
+Thanks for reply! I want to make 2nd port enable.
+zevweiss — 오늘 오전 10:38
+you mean add a second host-facing serial console?
+YJlee — 오늘 오전 10:41
+No,  I found there is serial4(uart5) is enable in AST2600.dts, but I want to change : uart2 can be enable..
+Jn. — 오늘 오전 10:44
+We use our own designed motherboard, cpu is p8 architecture, with ast2600, gpio name like this:BMC_CPU_STBY_RESET_N，BMC_CFAM_RESET_N，BMC_APSS_RESET_N...
+zevweiss — 오늘 오전 10:49
+well, you can change your system-specific dts to enable that UART...does that answer your question?
+e.g.
+&uart2 {
+    status = "okay";
+};
+YJlee — 오늘 오전 10:56
+Yes! and i don't need to change this part? {
+        model = "AST2600 EVB";
+        compatible = "aspeed,ast2600-evb", "aspeed,ast2600";
+
+        memory {
+                device_type = "memory";
+                reg = <0x80000000 0x40000000>;
+        };
+
+        chosen {
+                stdout-path = &uart5;
+        };
+
+        aliases {
+                mmc0 = &emmc_slot0;
+                mmc1 = &sdhci_slot0;
+                mmc2 = &sdhci_slot1;
+                spi0 = &fmc;
+                spi1 = &spi1;
+                spi2 = &spi2;
+                ethernet0 = &mac0;
+                ethernet1 = &mac1;
+                ethernet2 = &mac2;
+                ethernet3 = &mac3;
+        };
+
+        cpus {
+                cpu@0 {
+                        clock-frequency = <800000000>;
+                };
+                cpu@1 {
+                        clock-frequency = <800000000>;
+                };
+        };
+};
+zevweiss — 오늘 오전 10:58
+the usual approach is to #include "aspeed-g6.dtsi" to get a reasonable set of defaults and then override the parts you need to change for your specific board; if there's anything that's in the base .dtsi that also applies for your hardware, you don't need to repeat it or change anything
+see various examples in arch/arm/boot/dts in the kernel source tree
+YJlee — 오늘 오전 10:59
+Thanks a lot! 👍 👍

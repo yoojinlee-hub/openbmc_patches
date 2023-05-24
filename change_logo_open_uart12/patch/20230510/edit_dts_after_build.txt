@@ -1,0 +1,40 @@
+./build/evb-ast2600/tmp/work/evb_ast2600-openbmc-linux-gnueabi/u-boot-fw-utils-aspeed-sdk/1_v2019.04+gitAUTOINC+fd915728e1-r0/git/arch/arm/dts/ast2600-evb.dts
+./build/evb-ast2600/tmp/work/evb_ast2600-openbmc-linux-gnueabi/u-boot-aspeed-sdk/1_v2019.04+gitAUTOINC+fd915728e1-r0/git/arch/arm/dts/ast2600-evb.dts
+
+
+
+
+
+===============================================
+after get answer in openbmc discord
+|          
+
+> 
+YJlee — 어제 오후 4:49
+Hello, I have a question about log. If i want to change Model name, where can I modify or edit? Thank you for read my question.. Have a nice day.
+BP0c00
+
+U-Boot SPL 2019.04 (Apr 14 2022 - 11:36:09 +0000)
+Trying to boot from RAM
+
+
+U-Boot 2019.04 (Apr 14 2022 - 11:36:09 +0000)
+
+SOC: AST2600-A3 
+RST: Power On 
+eSPI Mode: SIO:Enable : SuperIO-2e
+Eth: MAC0: RMII/NCSI, MAC1: RMII/NCSI, MAC2: RMII/NCSI, MAC3: RMII/NCSI
+Model: AST2600 EVB
+DRAM:  already initialized, 1008 MiB (capacity:1024 MiB, VGA:16 MiB, ECC:off)
+MMC:
+sdhci_reset: Reset 0x1 never completed. 
+i.mikhaylov — 어제 오후 5:14
+@YJlee that's on openbmc/u-boot project, not from u-boot/u-boot on github
+[fr@fr openbmc_uboot]$ grep -r "AST2600-A3"
+arch/arm/mach-aspeed/ast2600/scu_info.c:    SOC_ID("AST2600-A3", 0x0503030305030303),
+cmd/otp.c:        /* AST2600-A3 */
+[fr@fr openbmc_uboot]$ grep -r "AST2600 EVB"
+arch/arm/dts/ast2600-evb.dts:    model = "AST2600 EVB";
+arch/arm/dts/ast2600-ncsi.dts:    model = "AST2600 EVB w/ NCSI";
+arch/arm/dts/ast2600-pfr.dts:    model = "AST2600 EVB";
+
