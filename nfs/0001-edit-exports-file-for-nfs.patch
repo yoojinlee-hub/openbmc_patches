@@ -1,0 +1,21 @@
+From ae0ad5d1b60ac945f0d5865e22cd4030efb9de20 Mon Sep 17 00:00:00 2001
+From: YoojinLee <adria96@hanmail.net>
+Date: Thu, 14 Sep 2023 16:47:23 +0900
+Subject: [PATCH] edit exports file for nfs
+
+---
+ oe-local-files/exports | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 oe-local-files/exports
+
+diff --git a/oe-local-files/exports b/oe-local-files/exports
+new file mode 100644
+index 0000000..e695dc0
+--- /dev/null
++++ b/oe-local-files/exports
+@@ -0,0 +1,2 @@
++/ *(rw,no_root_squash,fsid=0,sync,no_subtree_check)
++/home/root/fpga *(rw,fsid=1,no_root_squash,sync,no_subtree_check)
+-- 
+2.25.1
+
