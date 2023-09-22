@@ -1,0 +1,4 @@
+file for nfs test written by YJlee
+
+* Do this in other linux OS
+	: sudo mount -t nfs 192.168.0.194:/usr/root/nfs [local mount route]
