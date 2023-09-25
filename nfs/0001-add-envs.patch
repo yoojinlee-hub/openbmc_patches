@@ -1,0 +1,26 @@
+From bd776221d9de3f847c13cea4cd8d9d94dbc171fc Mon Sep 17 00:00:00 2001
+From: yoojinlee <adria96@hanmail.net>
+Date: Thu, 31 Aug 2023 05:38:57 +0000
+Subject: [PATCH] add envs
+
+---
+ include/configs/aspeed-common.h | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/include/configs/aspeed-common.h b/include/configs/aspeed-common.h
+index 2dd1119de0..fc93faf5ff 100644
+--- a/include/configs/aspeed-common.h
++++ b/include/configs/aspeed-common.h
+@@ -56,6 +56,9 @@
+ #define CONFIG_SYS_BOOTM_LEN 		(0x800000 * 2)
+ 
+ #define CONFIG_EXTRA_ENV_SETTINGS \
++	"rootpath=/private/rootfs\0" \
++	"nfsip=192.168.0.200\0" \
++	"bootargs_nfs=setenv bootargs console=ttyS4,115200n8 mem.devmem=y root=/dev/nfs rootfstype=nfs rw nfsroot=${nfsip}:${rootpath},nolock,tcp,nfsvers=4 ip=${ipaddr}:${serverip}:${gatewayip}:${netmask}::eth0:off loglevel=8 nfsrootdebug\0"	\	
+ 	"verify=yes\0"	\
+ 	""
+ 
+-- 
+2.34.1
+
